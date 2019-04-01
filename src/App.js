@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { Modal, Button, message } from "antd";
 import "antd/dist/antd.css";
 import "./App.css";
+import QuestionCard from "./QuestionCard";
 
 const Wrapper = styled.div`
   text-align: center;
@@ -26,9 +27,9 @@ const App = () => {
     questionsFetch();
   }, []);
 
-  const questionsFetch = () => {
+  const questionsFetch = async () => {
     Axios.get(
-      "https://opentdb.com/api.php?amount=10&category=10&difficulty=easy&type=multiple"
+      "https://opentdb.com/api.php?amount=20&category=23&difficulty=medium&type=multiple"
     )
       .then(response => {
         console.log(response.data.results);
@@ -66,7 +67,7 @@ const App = () => {
         onCancel={handleCancel}
         centered
       >
-        {questions[0].question}
+       <QuestionCard />
       </Modal>
     </Wrapper>
   );
