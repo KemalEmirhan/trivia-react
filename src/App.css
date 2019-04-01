@@ -8,3 +8,13 @@
 .ant-modal-title {
   text-align: center;
 }
+
+.ant-modal-footer > div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ant-modal-footer > div > .ant-btn {
+  width: 10rem;
+}

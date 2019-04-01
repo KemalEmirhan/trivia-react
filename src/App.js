@@ -7,6 +7,7 @@ import "antd/dist/antd.css";
 import "./App.css";
 import QuestionCard from "./QuestionCard";
 
+//TODO: Add some background style like navbar 
 const Wrapper = styled.div`
   text-align: center;
 `;
@@ -14,6 +15,7 @@ const Wrapper = styled.div`
 const Header = styled.h1`
   width: 100%;
   height: 10rem;
+ 
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -34,6 +36,8 @@ const App = () => {
       .then(response => {
         console.log(response.data.results);
         setQuestions(response.data.results);
+
+        //TODO: Filter response and change category name to uppercase
       })
       .catch(error => {
         console.log(error);
@@ -47,10 +51,12 @@ const App = () => {
 
   const handleOk = () => {
     setVisible(false);
+    //TODO: Show message to modal has been closed 
   };
 
   const handleCancel = () => {
     setVisible(false);
+    //TODO: Show message to modal has been closed 
   };
 
   return (
@@ -61,13 +67,15 @@ const App = () => {
       </Button>
 
       <Modal
-        title="Trivia Game"
+        title={questions[0].category}
         visible={visible}
         onOk={handleOk}
         onCancel={handleCancel}
         centered
       >
-       <QuestionCard />
+       {/* 
+          //TODO: Put QuestionCard component here and passing props (response data)
+        */}
       </Modal>
     </Wrapper>
   );
