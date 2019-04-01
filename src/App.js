@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Axios from "axios";
 import styled from "styled-components";
 
-import { Modal, Button } from "antd";
+import { Modal, Button, message } from "antd";
 import "antd/dist/antd.css";
 import "./App.css";
 
@@ -19,6 +20,25 @@ const Header = styled.h1`
 
 const App = () => {
   const [visible, setVisible] = useState(false);
+  const [questions, setQuestions] = useState([{}]);
+
+  useEffect(() => {
+    questionsFetch();
+  }, []);
+
+  const questionsFetch = () => {
+    Axios.get(
+      "https://opentdb.com/api.php?amount=10&category=10&difficulty=easy&type=multiple"
+    )
+      .then(response => {
+        console.log(response.data.results);
+        setQuestions(response.data.results);
+      })
+      .catch(error => {
+        console.log(error);
+        message.error(error);
+      });
+  };
 
   const showModal = () => {
     setVisible(true);
@@ -45,7 +65,9 @@ const App = () => {
         onOk={handleOk}
         onCancel={handleCancel}
         centered
-      />
+      >
+        {questions[0].question}
+      </Modal>
     </Wrapper>
   );
 };
