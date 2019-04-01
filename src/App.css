@@ -1,0 +1,10 @@
+.btn-start {
+  width: 20rem;
+  height: 4rem;
+  font-size: 1.8rem;
+  border-radius: 1rem;
+}
+
+.ant-modal-title {
+  text-align: center;
+}
